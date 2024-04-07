@@ -1,16 +1,17 @@
-import { useState } from 'react'
-
-import Warframes from './components/Warframes'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import WarframePage from './components/WarframePage';
+import HomePage from './HomePage';
+import WarframeDetails from './components/WarframeDetails';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-    Hello
-      <Warframes />
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/warframe/:warframeName" element={<WarframeDetails />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
