@@ -1,21 +1,24 @@
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import WarframePage from './components/WarframePage';
-import { useState, useEffect } from 'react';
-import WarframeDetails from './components/WarframeDetails';
+import axios from "axios";
+import { Link } from "react-router-dom";
+import WarframePage from "./components/WarframePage";
+import { useState, useEffect } from "react";
+import WarframeDetails from "./components/WarframeDetails";
+import Layout from "./components/Layout";
 
 const HomePage = () => {
   const [warframes, setWarframes] = useState([]);
 
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
-  const filteredWarframes = warframes.filter(warframe =>
+  const filteredWarframes = warframes.filter((warframe) =>
     warframe.name.toLowerCase().includes(search.toLowerCase())
   );
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://api.warframestat.us/warframes');
+        const response = await axios.get(
+          "https://api.warframestat.us/warframes"
+        );
         setWarframes(response.data);
       } catch (error) {
         console.error(error);
@@ -25,12 +28,12 @@ const HomePage = () => {
     fetchData();
   }, []);
 
-  console.log("filteredWarframes", filteredWarframes)
+  console.log("filteredWarframes", filteredWarframes);
   return (
     <div>
       {/* Search bar and warframe list */}
-       {/* Search bar */}
-       <input
+      {/* Search bar */}
+      <input
         type="text"
         placeholder="Search Warframes"
         value={search}
@@ -38,14 +41,9 @@ const HomePage = () => {
       />
 
       {/* Render WarframeDetails if a warframe is selected */}
-      {search && (
-        <WarframeDetails warframeName={search} />
-      )}
-   
-    
-      <WarframePage/>
-    
+      {search && <WarframeDetails warframeName={search} />}
 
+      <WarframePage />
     </div>
   );
 };

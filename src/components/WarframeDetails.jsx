@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Avatar } from "@mui/material";
 
 const WarframeDetails = () => {
   const [warframeData, setWarframeData] = useState(null);
@@ -8,7 +9,9 @@ const WarframeDetails = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://api.warframestat.us/warframes/${warframeName}`);
+        const response = await fetch(
+          `https://api.warframestat.us/warframes/${warframeName}`
+        );
         const data = await response.json();
         setWarframeData(data);
       } catch (error) {
@@ -24,11 +27,17 @@ const WarframeDetails = () => {
   }
 
   console.log("warframeName", warframeName);
+  console.log("warframeData", warframeData);
 
   return (
     <div>
-      <h1>Warframe Page</h1>
-      <h2>{warframeData.name}</h2>
+      <h1>{warframeData.name}</h1>
+      
+      <Avatar
+         src={`https://cdn.warframestat.us/img/${warframeData.imageName}`}
+                    alt="image"
+                    sx={{ width: 640, height: 640 }}
+      />
       <h3>Abilities:</h3>
       <ul>
         {warframeData.abilities.map((ability, index) => (
@@ -38,7 +47,8 @@ const WarframeDetails = () => {
           </li>
         ))}
       </ul>
-      <img src={warframeData.image} alt={warframeData.name} />
+
+
       <p>{warframeData.description}</p>
     </div>
   );
