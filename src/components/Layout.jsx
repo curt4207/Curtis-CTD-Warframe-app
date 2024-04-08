@@ -28,6 +28,17 @@ const Main = styled.main`
   padding: 1rem;
 `;
 
+const Button = styled.button`
+height: 40px;
+
+  color: darkslategray;
+  background-color: aliceblue;
+ 
+
+
+`
+
+
 const Layout = ({ children }) => {
   const [theme, setTheme] = useState('light');
 
@@ -40,7 +51,7 @@ const Layout = ({ children }) => {
       <LayoutContainer>
         <Header>
           <h1>Layout Page</h1>
-          <button onClick={toggleTheme}>Toggle Theme</button>
+          <Button onClick={toggleTheme}>Toggle Theme</Button>
         </Header>
         <Main>{children}</Main>
       </LayoutContainer>
