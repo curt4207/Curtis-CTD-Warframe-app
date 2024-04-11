@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
 
 const lightTheme = {
   backgroundColor: '#f5f5f5',
@@ -22,6 +24,7 @@ const Header = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  border: 1px solid;
 `;
 
 const Main = styled.main`
@@ -33,11 +36,13 @@ height: 40px;
 
   color: darkslategray;
   background-color: aliceblue;
- 
-
-
+  /* padding: 8, */
+  /* borderRadius: 4, */
 `
-
+const HomeLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
 
 const Layout = ({ children }) => {
   const [theme, setTheme] = useState('light');
@@ -50,12 +55,14 @@ const Layout = ({ children }) => {
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <LayoutContainer>
         <Header>
-          <h1>Layout Page</h1>
+        {/* <HomeLink to="/">Home</HomeLink> */}
           <Button onClick={toggleTheme}>Toggle Theme</Button>
         </Header>
+        
         <Main>{children}</Main>
       </LayoutContainer>
     </ThemeProvider>
+    
   );
 };
 
