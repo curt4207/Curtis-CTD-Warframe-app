@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import React, { useState } from "react";
+import styled, { ThemeProvider } from "styled-components";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const lightTheme = {
-  backgroundColor: '#f5f5f5',
-  textColor: '#333',
+  backgroundColor: "#f5f5f5",
+  textColor: "#333",
 };
 
 const darkTheme = {
-  backgroundColor: '#222',
-  textColor: '#fff',
+  backgroundColor: "#222",
+  textColor: "#fff",
 };
 
 const LayoutContainer = styled.div`
@@ -22,6 +24,7 @@ const Header = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  border: 1px solid;
 `;
 
 const Main = styled.main`
@@ -29,30 +32,33 @@ const Main = styled.main`
 `;
 
 const Button = styled.button`
-height: 40px;
+  height: 40px;
 
   color: darkslategray;
   background-color: aliceblue;
- 
-
-
-`
-
+  /* padding: 8, */
+  /* borderRadius: 4, */
+`;
+const HomeLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
 
 const Layout = ({ children }) => {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState("light");
 
   const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
-    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <LayoutContainer>
         <Header>
-          <h1>Layout Page</h1>
+          <Navbar />
           <Button onClick={toggleTheme}>Toggle Theme</Button>
         </Header>
+
         <Main>{children}</Main>
       </LayoutContainer>
     </ThemeProvider>
