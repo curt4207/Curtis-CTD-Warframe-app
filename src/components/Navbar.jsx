@@ -1,12 +1,20 @@
 import React from 'react';
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
+    const navigation = [
+        { path: "/", name: "Home" },
+        { path: "/warframefavpage", name: "Favorite page" },
+      ];
+
     return (
-        <nav className='nav'>
-            <a href='/'>Home page</a>
-            <br/>
-            <a href='/warframefavpage'>Favorite page</a>
-        </nav>
+        <nav style={{ display: "flex", justifyContent: "space-between" }}>
+        {navigation.map((nav) => (
+          <NavLink className="link" key={nav.name} to={nav.path}>
+            {nav.name}
+          </NavLink>
+        ))}
+      </nav>
     );
 }
 
